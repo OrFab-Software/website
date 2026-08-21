@@ -80,82 +80,10 @@
         </div>
       </div>
 
-      <div class="dashboard-wrap" id="dashboard" aria-label="Exemple animé d’un parcours géré avec OrFab">
+      <div class="dashboard-wrap" id="dashboard" aria-label="Mini spot animé présentant la promesse OrFab">
         <div class="dashboard-glow"></div>
         <div class="dashboard workflow-panel">
-          <div class="workflow-stage">
-            <div class="workflow-kicker">UN EXEMPLE DE FLUX — VOTRE OUTIL S’ADAPTE À VOTRE ACTIVITÉ</div>
-
-            <svg class="workflow-lines" viewBox="0 0 800 620" aria-hidden="true">
-              <defs>
-                <linearGradient id="flowBlue" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#6ba8ff"/>
-                  <stop offset="1" stop-color="#1f6fff"/>
-                </linearGradient>
-                <linearGradient id="flowGold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#f6d176"/>
-                  <stop offset="1" stop-color="#c98b26"/>
-                </linearGradient>
-              </defs>
-
-              <path class="flow-line flow-line--purple s1" d="M130 95 C170 140 270 125 350 165"/>
-              <path class="flow-line flow-line--gold s1" d="M400 95 C400 125 400 140 400 165"/>
-              <path class="flow-line flow-line--gold s1" d="M670 95 C630 140 530 125 450 165"/>
-              <path class="flow-line flow-line--blue s2" d="M400 215 C400 240 400 250 400 270"/>
-              <path class="flow-line flow-line--blue s3" d="M400 318 C400 340 400 350 400 372"/>
-
-              <path class="flow-line flow-line--blue s4" d="M360 420 C310 445 230 440 205 478"/>
-              <path class="flow-line flow-line--gold s4" d="M400 425 C400 445 400 455 400 478"/>
-              <path class="flow-line flow-line--blue s4" d="M440 420 C490 445 570 440 595 478"/>
-
-              <path class="flow-line flow-line--gold s5" d="M400 525 C400 548 375 557 350 575"/>
-              <path class="flow-line flow-line--blue flow-line--dashed s5" d="M595 525 C610 545 610 555 596 575"/>
-            </svg>
-
-            <div class="flow-node source source--instagram" style="--delay:.1s">
-              <span class="flow-icon flow-icon--instagram">◎</span><span>Instagram</span>
-            </div>
-            <div class="flow-node source source--email" style="--delay:.3s">
-              <span class="flow-icon">✉</span><span>E-mail</span>
-            </div>
-            <div class="flow-node source source--phone" style="--delay:.5s">
-              <span class="flow-icon flow-icon--gold">●</span><span>Téléphone</span>
-            </div>
-
-            <div class="flow-node request" style="--delay:1.15s">
-              <span class="spark">✦</span><span>Nouvelle demande</span>
-            </div>
-
-            <div class="flow-node prospect" style="--delay:2s">
-              <span class="flow-icon">♙</span><span>Prospect</span>
-            </div>
-
-            <div class="flow-node orfab-core" style="--delay:2.75s">
-              <svg viewBox="0 0 100 100" aria-hidden="true">
-                <path d="M19 22 39 10 48 28 34 39 13 36Z" fill="#b7b9bd"/>
-                <path d="M61 10 82 23 87 39 65 39 52 28Z" fill="#d6a13b"/>
-                <path d="M88 49 84 72 65 86 55 68 68 54Z" fill="#b67f23"/>
-                <path d="M55 72 65 88 42 92 20 81 32 63Z" fill="#185cc6"/>
-                <path d="M13 43 30 47 29 62 17 78 8 59Z" fill="#8d9197"/>
-                <circle cx="50" cy="50" r="16" fill="#0c0f13"/>
-              </svg>
-              <span>OrFab</span>
-            </div>
-
-            <div class="flow-node branch branch--rdv" style="--delay:3.6s"><span class="flow-icon">▣</span><span>Rendez-vous</span></div>
-            <div class="flow-node branch branch--quote" style="--delay:3.8s"><span class="flow-icon">▤</span><span>Devis</span></div>
-            <div class="flow-node branch branch--docs" style="--delay:4s"><span class="flow-icon">▰</span><span>Documents</span></div>
-
-            <div class="flow-node followup" style="--delay:4.9s"><span class="bolt">ϟ</span><span>Relance</span><b>AUTOMATISÉ</b></div>
-            <div class="flow-node validation" style="--delay:5.2s"><span>Document</span><b>À VALIDER</b></div>
-            <div class="flow-node client" style="--delay:5.85s"><span>♟</span><strong>Client</strong></div>
-
-            <div class="workflow-legend" aria-label="Légende">
-              <span class="legend legend--gold"><i></i>AUTOMATISÉ</span>
-              <span class="legend legend--blue"><i></i>ASSISTÉ</span>
-              <span class="legend legend--silver"><i></i>À VALIDER</span>
-            </div>
-          </div>
+          <div class="workflow-stage" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -169,5 +97,6 @@
     <p>La suite de la page sera construite après validation de ce premier écran.</p>
   </section>
   <span id="tarifs" hidden></span><span id="apropos" hidden></span><span id="contact" hidden></span>
+  <script src="js/hero-ad.js"></script>
 </body>
 </html>
