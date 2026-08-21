@@ -1,0 +1,176 @@
+/* Hero workflow animation */
+.workflow-panel{
+  display:block;
+  height:650px;
+  padding:0;
+  overflow:hidden;
+}
+.workflow-stage{
+  position:relative;
+  width:100%;
+  height:100%;
+  padding:24px 28px 22px;
+  background:
+    radial-gradient(circle at 52% 42%,rgba(35,113,255,.08),transparent 34%),
+    radial-gradient(circle at 66% 68%,rgba(224,167,57,.07),transparent 30%),
+    linear-gradient(160deg,rgba(13,18,24,.98),rgba(6,9,13,.99));
+}
+.workflow-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);
+  background-size:38px 38px;
+  opacity:.58;
+}
+.workflow-kicker{
+  position:absolute;
+  top:21px;
+  left:28px;
+  z-index:3;
+  color:#7f8997;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1.35px;
+}
+.workflow-lines{
+  position:absolute;
+  inset:24px 18px 28px 18px;
+  z-index:1;
+  width:calc(100% - 36px);
+  height:calc(100% - 52px);
+  overflow:visible;
+}
+.flow-line{
+  fill:none;
+  stroke-width:2.1;
+  stroke-linecap:round;
+  stroke-dasharray:8 7;
+  stroke-dashoffset:120;
+  opacity:0;
+  animation:flowTrace 8.8s linear infinite;
+}
+.flow-line--blue{stroke:url(#flowBlue);filter:drop-shadow(0 0 6px rgba(39,120,255,.72))}
+.flow-line--gold{stroke:url(#flowGold);filter:drop-shadow(0 0 6px rgba(233,180,74,.72))}
+.flow-line--purple{stroke:#a36fff;filter:drop-shadow(0 0 6px rgba(163,111,255,.65))}
+.flow-line--dashed{stroke-dasharray:4 9}
+.flow-line.s1{animation-delay:.65s}
+.flow-line.s2{animation-delay:1.55s}
+.flow-line.s3{animation-delay:2.35s}
+.flow-line.s4{animation-delay:3.2s}
+.flow-line.s5{animation-delay:4.35s}
+
+.flow-node{
+  position:absolute;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:50px;
+  padding:0 18px;
+  border:1px solid rgba(76,143,255,.34);
+  border-radius:10px;
+  background:linear-gradient(145deg,rgba(15,21,29,.96),rgba(8,12,17,.95));
+  color:#e9edf2;
+  box-shadow:0 12px 30px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.025);
+  font-size:14px;
+  white-space:nowrap;
+  opacity:0;
+  transform:translateY(10px) scale(.97);
+  animation:flowNodeCycle 8.8s ease-in-out infinite;
+  animation-delay:var(--delay,0s);
+}
+.flow-node::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 36%);
+  opacity:.45;
+}
+.flow-icon{color:#4c95ff;font-size:18px;line-height:1}
+.flow-icon--instagram{color:#c765ff}
+.flow-icon--gold{color:#e8b54c}
+.spark{color:#a36fff;font-size:19px;text-shadow:0 0 12px rgba(163,111,255,.72)}
+.bolt{color:#f0b84d;font-size:21px;text-shadow:0 0 12px rgba(240,184,77,.65)}
+
+.source{top:70px;width:155px;height:52px}
+.source--instagram{left:42px;border-color:rgba(176,91,255,.34)}
+.source--email{left:50%;transform:translateX(-50%) translateY(10px) scale(.97)}
+.source--phone{right:42px;border-color:rgba(227,171,67,.34)}
+.request{top:174px;left:50%;min-width:215px;transform:translateX(-50%) translateY(10px) scale(.97);border-color:rgba(164,102,255,.62);box-shadow:0 0 26px rgba(164,102,255,.07),0 12px 30px rgba(0,0,0,.25)}
+.prospect{top:265px;left:50%;min-width:150px;transform:translateX(-50%) translateY(10px) scale(.97);border-color:rgba(52,132,255,.55)}
+.orfab-core{top:356px;left:50%;min-width:210px;height:66px;transform:translateX(-50%) translateY(10px) scale(.97);border-color:rgba(231,178,72,.76);color:#e9b652;font-size:22px;box-shadow:0 0 34px rgba(230,174,65,.10),0 14px 38px rgba(0,0,0,.32)}
+.orfab-core svg{width:36px;height:36px;filter:drop-shadow(0 0 7px rgba(230,174,65,.16))}
+.branch{top:468px;width:155px;height:52px}
+.branch--rdv{left:40px}
+.branch--quote{left:50%;transform:translateX(-50%) translateY(10px) scale(.97);border-color:rgba(231,178,72,.48)}
+.branch--docs{right:40px}
+.followup{top:548px;left:50%;min-width:250px;height:54px;transform:translateX(-50%) translateY(10px) scale(.97);border-color:rgba(231,178,72,.74)}
+.followup b,.validation b{
+  margin-left:7px;
+  padding:5px 8px;
+  border:1px solid rgba(231,178,72,.48);
+  border-radius:999px;
+  color:#f0ba4e;
+  font-size:8px;
+  letter-spacing:.75px;
+}
+.validation{top:548px;right:34px;min-width:165px;height:54px;border-style:dashed;border-color:rgba(70,135,235,.42);font-size:11px;color:#aeb8c5}
+.validation b{color:#58a0ff;border-color:rgba(70,135,235,.48);margin-left:0}
+.client{top:548px;left:28px;min-width:145px;height:54px;border-color:rgba(85,178,111,.38);color:#c9ecd3}
+.client strong{font-weight:650;letter-spacing:.2px}
+
+.workflow-legend{
+  position:absolute;
+  z-index:4;
+  left:28px;
+  right:28px;
+  bottom:18px;
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  color:#929aa5;
+  font-size:9px;
+  letter-spacing:.55px;
+}
+.legend{display:flex;align-items:center;gap:7px}
+.legend i{width:7px;height:7px;border-radius:50%;display:block}
+.legend--gold i{background:#e8ad3f;box-shadow:0 0 10px rgba(232,173,63,.45)}
+.legend--blue i{background:#2d7dff;box-shadow:0 0 10px rgba(45,125,255,.45)}
+.legend--silver i{background:#a0a7b2}
+
+@keyframes flowTrace{
+  0%,7%{opacity:0;stroke-dashoffset:120}
+  13%{opacity:.28}
+  28%{opacity:1;stroke-dashoffset:0}
+  72%{opacity:.72;stroke-dashoffset:-40}
+  88%,100%{opacity:0;stroke-dashoffset:-90}
+}
+@keyframes flowNodeCycle{
+  0%,7%{opacity:0;filter:brightness(.8)}
+  14%{opacity:1;filter:brightness(1.25)}
+  24%,72%{opacity:1;filter:brightness(1)}
+  82%{opacity:.45;filter:brightness(.82)}
+  94%,100%{opacity:0;filter:brightness(.75)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .flow-node,.flow-line{animation:none!important;opacity:1!important}
+}
+
+@media (max-width:1300px){
+  .workflow-panel{height:610px}
+  .workflow-kicker{font-size:8px}
+  .source{width:136px}
+  .source--instagram{left:24px}.source--phone{right:24px}
+  .branch{width:136px}.branch--rdv{left:24px}.branch--docs{right:24px}
+  .validation{right:20px;min-width:145px}
+  .client{left:18px;min-width:130px}
+  .followup{min-width:220px}
+}
