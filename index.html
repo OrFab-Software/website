@@ -6,28 +6,22 @@
   <meta name="description" content="OrFab conçoit des solutions numériques et CRM sur mesure autour de la façon de travailler des indépendants et petites entreprises.">
   <title>OrFab — Votre façon de travailler mérite son propre logiciel</title>
   <link rel="stylesheet" href="css/orfab-v2.css">
+  <style>
+    .of-header{height:118px;grid-template-columns:340px 1fr 220px;background:linear-gradient(180deg,rgba(8,9,11,.96),rgba(8,9,11,.84));backdrop-filter:blur(10px);}
+    .of-brand{display:block;width:320px;height:94px;overflow:hidden;border:0;text-decoration:none;}
+    .of-brand img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center;}
+    .of-nav{display:flex;justify-content:center;gap:42px;font-size:14px;}
+    .of-nav a,.of-nav a:visited{color:#c4c8cd !important;text-decoration:none !important;font-weight:600;letter-spacing:.15px;}
+    .of-nav a:hover,.of-nav a:focus-visible{color:#eef0f2 !important;}
+    @media(max-width:900px){.of-header{height:96px;grid-template-columns:1fr auto}.of-brand{width:250px;height:78px}.of-nav{display:none}}
+    @media(max-width:560px){.of-brand{width:210px;height:68px}}
+  </style>
 </head>
 <body>
   <main class="of-hero" id="accueil">
     <header class="of-header of-shell">
       <a class="of-brand" href="#accueil" aria-label="OrFab — Accueil">
-        <svg class="of-brand__mark" viewBox="0 0 100 100" role="img" aria-label="Logo OrFab">
-          <defs>
-            <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f4f2"/><stop offset=".48" stop-color="#a8aaae"/><stop offset="1" stop-color="#5d6168"/></linearGradient>
-            <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe59c"/><stop offset=".42" stop-color="#d9a63e"/><stop offset="1" stop-color="#8f5d14"/></linearGradient>
-            <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4d97ff"/><stop offset=".45" stop-color="#175ecb"/><stop offset="1" stop-color="#072b72"/></linearGradient>
-          </defs>
-          <path d="M19 22 39 10 48 28 34 39 13 36Z" fill="url(#steel)"/>
-          <path d="M61 10 82 23 87 39 65 39 52 28Z" fill="url(#gold)"/>
-          <path d="M88 49 84 72 65 86 55 68 68 54Z" fill="url(#gold)"/>
-          <path d="M55 72 65 88 42 92 20 81 32 63Z" fill="url(#blue)"/>
-          <path d="M13 43 30 47 29 62 17 78 8 59Z" fill="url(#steel)"/>
-          <circle cx="50" cy="50" r="16" fill="#050607"/>
-        </svg>
-        <span class="of-brand__text">
-          <span class="of-brand__name">OrFab</span>
-          <span class="of-brand__tagline"><b>COMPRENDRE</b><i>•</i><b>OPTIMISER</b><i>•</i><b>CONSTRUIRE</b></span>
-        </span>
+        <img src="assets/orfab-logo-header.webp" alt="OrFab — Comprendre, Optimiser, Construire">
       </a>
       <nav class="of-nav" aria-label="Navigation principale">
         <a href="#constat">Pourquoi OrFab</a><a href="#methode">Notre méthode</a><a href="#solution">La solution</a><a href="#tarifs">Offres</a>
