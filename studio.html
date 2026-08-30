@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OrFab Studio — configurateur visuel</title>
+<style>
+:root{--bg:#0b1725;--panel:#111f2f;--panel2:#16283b;--line:#30465c;--text:#f2eee5;--muted:#aeb8c1;--gold:#d1a047;--silver:#c5c8c7}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}.app{height:100vh;display:grid;grid-template-columns:340px 1fr}.sidebar{background:#08131f;border-right:1px solid var(--line);overflow:auto;padding:18px}.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.brand h1{font-size:20px;margin:0}.brand span{font-size:11px;color:var(--gold);letter-spacing:1.2px;font-weight:700}.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.toolbar button,.action{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:8px;padding:10px 12px;font-weight:650;cursor:pointer}.toolbar button:hover,.action:hover{border-color:var(--gold)}.group{border:1px solid var(--line);background:var(--panel);border-radius:12px;margin:0 0 12px;overflow:hidden}.group summary{cursor:pointer;padding:13px 14px;font-weight:750;color:#eef1f3;list-style:none}.group summary::-webkit-details-marker{display:none}.controls{padding:0 14px 14px;display:grid;gap:12px}.control{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.control label{font-size:13px;color:#d4d9dd}.control small{grid-column:1/-1;color:var(--muted);font-size:11px}.control input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--gold)}.control input[type=color]{width:46px;height:30px;border:1px solid var(--line);border-radius:6px;background:transparent;padding:2px}.control select{background:#0d1a28;color:var(--text);border:1px solid var(--line);border-radius:7px;padding:7px}.value{font-size:12px;color:var(--gold);font-variant-numeric:tabular-nums}.workspace{display:grid;grid-template-rows:54px 1fr;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;background:#0b1725;border-bottom:1px solid var(--line);padding:0 14px}.viewports{display:flex;gap:6px}.viewports button{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:7px;padding:7px 10px;cursor:pointer}.viewports button.active{color:#101820;background:var(--gold);border-color:var(--gold)}.hint{font-size:12px;color:var(--muted)}.stage{overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding:18px;background:#0e1b29}.frame-wrap{width:100%;height:calc(100vh - 90px);transition:width .2s ease}.frame-wrap.tablet{width:900px}.frame-wrap.mobile{width:430px}.frame-wrap iframe{width:100%;height:100%;border:1px solid #3a4f63;border-radius:10px;background:white}.footer-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.footer-actions .action.primary{background:var(--gold);color:#10243a;border-color:var(--gold)}.status{margin-top:10px;font-size:11px;color:var(--muted);line-height:1.45}.status strong{color:var(--silver)}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{position:absolute;z-index:10;width:320px;height:100vh;box-shadow:0 0 30px #0008}.workspace{margin-left:320px}.hint{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div><span>ORFAB</span><h1>Studio visuel</h1></div><button class="action" id="resetBtn">Réinitialiser</button></div>
+    <div class="toolbar">
+      <button data-jump="#accueil">Accueil</button><button data-jump="#constat">Constat</button>
+      <button data-jump="#methode">Méthode</button><button data-jump="#solution">Solution</button>
+      <button data-jump="#tarifs">Offres</button><button data-jump="#apropos">Footer</button>
+    </div>
+
+    <details class="group" open><summary>Couleurs principales</summary><div class="controls">
+      <div class="control"><label>Bleu OrFab</label><input type="color" data-key="blue" value="#10243a"></div>
+      <div class="control"><label>Or OrFab</label><input type="color" data-key="gold" value="#d1a047"></div>
+      <div class="control"><label>Silver</label><input type="color" data-key="silver" value="#c5c8c7"></div>
+      <div class="control"><label>Blanc cassé</label><input type="color" data-key="cream" value="#f2eee5"></div>
+      <div class="control"><label>Noir bandeau</label><input type="color" data-key="headerBg" value="#050607"></div>
+    </div></details>
+
+    <details class="group" open><summary>Bandeau & navigation</summary><div class="controls">
+      <div class="control"><label>Hauteur bandeau</label><span class="value" data-value="headerHeight"></span><input type="range" min="90" max="180" step="1" data-key="headerHeight" value="132"></div>
+      <div class="control"><label>Arrondi bandeau</label><span class="value" data-value="headerRadius"></span><input type="range" min="0" max="60" step="1" data-key="headerRadius" value="30"></div>
+      <div class="control"><label>Épaisseur contour or</label><span class="value" data-value="headerBorder"></span><input type="range" min="0" max="5" step="0.5" data-key="headerBorder" value="1.5"></div>
+      <div class="control"><label>Taille logo</label><span class="value" data-value="logoWidth"></span><input type="range" min="180" max="380" step="1" data-key="logoWidth" value="280"></div>
+      <div class="control"><label>Taille onglets</label><span class="value" data-value="navSize"></span><input type="range" min="12" max="28" step="1" data-key="navSize" value="17"></div>
+      <div class="control"><label>Graisse onglets</label><select data-key="navWeight"><option>500</option><option selected>650</option><option>700</option><option>750</option></select></div>
+    </div></details>
+
+    <details class="group" open><summary>Hero</summary><div class="controls">
+      <div class="control"><label>Taille sur-titre</label><span class="value" data-value="heroKicker"></span><input type="range" min="10" max="24" step="1" data-key="heroKicker" value="14"></div>
+      <div class="control"><label>Taille grand titre</label><span class="value" data-value="heroTitle"></span><input type="range" min="42" max="92" step="1" data-key="heroTitle" value="70"></div>
+      <div class="control"><label>Largeur titre</label><span class="value" data-value="heroTitleWidth"></span><input type="range" min="700" max="1400" step="10" data-key="heroTitleWidth" value="1080"></div>
+      <div class="control"><label>Largeur paragraphe</label><span class="value" data-value="heroLeadWidth"></span><input type="range" min="500" max="1200" step="10" data-key="heroLeadWidth" value="880"></div>
+      <div class="control"><label>Espace haut contenu</label><span class="value" data-value="heroTop"></span><input type="range" min="20" max="160" step="2" data-key="heroTop" value="92"></div>
+      <div class="control"><label>Taille bouton</label><span class="value" data-value="buttonSize"></span><input type="range" min="13" max="24" step="1" data-key="buttonSize" value="16"></div>
+    </div></details>
+
+    <details class="group" open><summary>Section « Constat »</summary><div class="controls">
+      <div class="control"><label>Espace supérieur</label><span class="value" data-value="problemTop"></span><input type="range" min="20" max="160" step="2" data-key="problemTop" value="72"></div>
+      <div class="control"><label>Taille « LE CONSTAT »</label><span class="value" data-value="problemKicker"></span><input type="range" min="10" max="26" step="1" data-key="problemKicker" value="14"></div>
+      <div class="control"><label>Fond cartes</label><input type="color" data-key="cardBg" value="#d7d9d7"></div>
+      <div class="control"><label>Arrondi cartes</label><span class="value" data-value="cardRadius"></span><input type="range" min="0" max="30" step="1" data-key="cardRadius" value="8"></div>
+      <div class="control"><label>Espace avant cartes</label><span class="value" data-value="casesTop"></span><input type="range" min="20" max="100" step="2" data-key="casesTop" value="54"></div>
+    </div></details>
+
+    <details class="group"><summary>Sections suivantes</summary><div class="controls">
+      <div class="control"><label>Fond méthode</label><input type="color" data-key="methodBg" value="#bec3c3"></div>
+      <div class="control"><label>Fond solution</label><input type="color" data-key="solutionBg" value="#10243a"></div>
+      <div class="control"><label>Fond offres</label><input type="color" data-key="offersBg" value="#d1a047"></div>
+      <div class="control"><label>Padding sections</label><span class="value" data-value="sectionPad"></span><input type="range" min="40" max="140" step="2" data-key="sectionPad" value="98"></div>
+    </div></details>
+
+    <div class="footer-actions"><button class="action primary" id="copyBtn">Copier la config</button><button class="action" id="downloadBtn">Télécharger JSON</button></div>
+    <div class="status"><strong>Important :</strong> les réglages sont sauvegardés dans ce navigateur et appliqués à l’aperçu. Cette V1 ne publie pas encore automatiquement dans GitHub. Une fois satisfait, tu peux me transmettre le JSON exporté et je l’applique au site public.</div>
+  </aside>
+
+  <main class="workspace">
+    <div class="topbar"><div class="viewports"><button class="active" data-view="desktop">Desktop</button><button data-view="tablet">Tablette</button><button data-view="mobile">Mobile</button></div><div class="hint">Aperçu en direct — les changements sont instantanés</div></div>
+    <div class="stage"><div class="frame-wrap" id="frameWrap"><iframe id="preview" src="index.html?studio=1"></iframe></div></div>
+  </main>
+</div>
+<script>
+const defaults={blue:'#10243a',gold:'#d1a047',silver:'#c5c8c7',cream:'#f2eee5',headerBg:'#050607',headerHeight:132,headerRadius:30,headerBorder:1.5,logoWidth:280,navSize:17,navWeight:650,heroKicker:14,heroTitle:70,heroTitleWidth:1080,heroLeadWidth:880,heroTop:92,buttonSize:16,problemTop:72,problemKicker:14,cardBg:'#d7d9d7',cardRadius:8,casesTop:54,methodBg:'#bec3c3',solutionBg:'#10243a',offersBg:'#d1a047',sectionPad:98};
+const units={headerHeight:'px',headerRadius:'px',headerBorder:'px',logoWidth:'px',navSize:'px',heroKicker:'px',heroTitle:'px',heroTitleWidth:'px',heroLeadWidth:'px',heroTop:'px',buttonSize:'px',problemTop:'px',problemKicker:'px',cardRadius:'px',casesTop:'px',sectionPad:'px'};
+let config={...defaults,...JSON.parse(localStorage.getItem('orfabStudioConfig')||'{}')};
+const frame=document.getElementById('preview');
+function css(c){return `
+:root{--blue:${c.blue};--gold:${c.gold};--silver:${c.silver};--cream:${c.cream}}
+body{background:${c.blue}!important}
+header.of-header{height:${c.headerHeight}px!important;background:${c.headerBg}!important;border:${c.headerBorder}px solid ${c.gold}!important;border-radius:${c.headerRadius}px!important}
+header.of-header .of-brand{width:${c.logoWidth}px!important}
+header.of-header .of-nav{font-size:${c.navSize}px!important}
+header.of-header .of-nav a{font-weight:${c.navWeight}!important}
+.of-hero{background:${c.blue}!important}
+.of-hero .of-kicker{font-size:${c.heroKicker}px!important;color:${c.gold}!important}
+.of-hero h1{font-size:${c.heroTitle}px!important;max-width:${c.heroTitleWidth}px!important;color:${c.cream}!important}
+.of-hero h1 span{color:${c.gold}!important}
+.of-hero__lead{max-width:${c.heroLeadWidth}px!important;color:${c.cream}!important}
+.of-hero__content{padding-top:${c.heroTop}px!important}
+.of-btn{font-size:${c.buttonSize}px!important}
+.of-btn--gold{background:${c.gold}!important;color:${c.blue}!important}
+.of-problem{background:${c.gold}!important;padding-top:${c.problemTop}px!important}
+.of-problem .of-kicker{font-size:${c.problemKicker}px!important}
+.of-problem .of-case{background:${c.cardBg}!important;border-radius:${c.cardRadius}px!important}
+.of-problem .of-cases{margin-top:${c.casesTop}px!important}
+.of-method{background:${c.methodBg}!important}
+.of-converge{background:${c.solutionBg}!important}
+.of-offers{background:${c.offersBg}!important}
+.of-section{padding-top:${c.sectionPad}px!important;padding-bottom:${c.sectionPad}px!important}
+`;}
+function apply(){localStorage.setItem('orfabStudioConfig',JSON.stringify(config));document.querySelectorAll('[data-value]').forEach(el=>{const k=el.dataset.value;el.textContent=config[k]+(units[k]||'')});const doc=frame.contentDocument;if(!doc)return;let st=doc.getElementById('orfab-studio-live');if(!st){st=doc.createElement('style');st.id='orfab-studio-live';doc.head.appendChild(st)}st.textContent=css(config)}
+function syncInputs(){document.querySelectorAll('[data-key]').forEach(el=>{const k=el.dataset.key;if(config[k]!==undefined)el.value=config[k]});apply()}
+document.querySelectorAll('[data-key]').forEach(el=>el.addEventListener('input',()=>{const k=el.dataset.key;config[k]=el.type==='range'?Number(el.value):el.value;apply()}));
+frame.addEventListener('load',apply);
+document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const t=frame.contentDocument.querySelector(b.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth'})}));
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('frameWrap').className='frame-wrap '+(b.dataset.view==='desktop'?'':b.dataset.view)}));
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Réinitialiser tous les réglages ?')){config={...defaults};syncInputs()}});
+document.getElementById('copyBtn').addEventListener('click',async()=>{await navigator.clipboard.writeText(JSON.stringify(config,null,2));const b=document.getElementById('copyBtn');b.textContent='Copié ✓';setTimeout(()=>b.textContent='Copier la config',1400)});
+document.getElementById('downloadBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(config,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='orfab-studio-config.json';a.click();URL.revokeObjectURL(a.href)});
+syncInputs();
+</script>
+</body>
+</html>
