@@ -11,15 +11,23 @@
   <main class="of-hero" id="accueil">
     <header class="of-header of-shell">
       <a class="of-brand" href="#accueil" aria-label="OrFab — Accueil">
-        <svg viewBox="0 0 100 100" role="img" aria-label="Logo OrFab">
+        <svg class="of-brand__mark" viewBox="0 0 100 100" role="img" aria-label="Logo OrFab">
           <defs>
             <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f4f2"/><stop offset=".48" stop-color="#a8aaae"/><stop offset="1" stop-color="#5d6168"/></linearGradient>
             <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe59c"/><stop offset=".42" stop-color="#d9a63e"/><stop offset="1" stop-color="#8f5d14"/></linearGradient>
             <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4d97ff"/><stop offset=".45" stop-color="#175ecb"/><stop offset="1" stop-color="#072b72"/></linearGradient>
           </defs>
-          <path d="M19 22 39 10 48 28 34 39 13 36Z" fill="url(#steel)"/><path d="M61 10 82 23 87 39 65 39 52 28Z" fill="url(#gold)"/><path d="M88 49 84 72 65 86 55 68 68 54Z" fill="url(#gold)"/><path d="M55 72 65 88 42 92 20 81 32 63Z" fill="url(#blue)"/><path d="M13 43 30 47 29 62 17 78 8 59Z" fill="url(#steel)"/><circle cx="50" cy="50" r="16" fill="#050607"/>
+          <path d="M19 22 39 10 48 28 34 39 13 36Z" fill="url(#steel)"/>
+          <path d="M61 10 82 23 87 39 65 39 52 28Z" fill="url(#gold)"/>
+          <path d="M88 49 84 72 65 86 55 68 68 54Z" fill="url(#gold)"/>
+          <path d="M55 72 65 88 42 92 20 81 32 63Z" fill="url(#blue)"/>
+          <path d="M13 43 30 47 29 62 17 78 8 59Z" fill="url(#steel)"/>
+          <circle cx="50" cy="50" r="16" fill="#050607"/>
         </svg>
-        <span class="of-brand__name">OrFab</span>
+        <span class="of-brand__text">
+          <span class="of-brand__name">OrFab</span>
+          <span class="of-brand__tagline"><b>COMPRENDRE</b><i>•</i><b>OPTIMISER</b><i>•</i><b>CONSTRUIRE</b></span>
+        </span>
       </a>
       <nav class="of-nav" aria-label="Navigation principale">
         <a href="#constat">Pourquoi OrFab</a><a href="#methode">Notre méthode</a><a href="#solution">La solution</a><a href="#tarifs">Offres</a>
@@ -41,39 +49,18 @@
       <p class="of-kicker">LE CONSTAT</p>
       <h2>Trois situations reviennent souvent.</h2>
       <p class="of-section__intro">Le problème n’est pas que vous travaillez mal. C’est souvent que les outils disponibles n’ont pas été conçus autour de votre façon de travailler.</p>
-
       <div class="of-cases">
-        <article class="of-case">
-          <span class="of-case__tag">SANS CRM</span>
-          <h3>Tout fonctionne… mais partout.</h3>
-          <p>Les informations vivent entre plusieurs outils. Les relances, rappels et envois reposent encore beaucoup sur votre mémoire et vos habitudes.</p>
-          <div class="of-case__flow"><span class="of-chip">Tableur</span><span class="of-chip">Agenda</span><span class="of-chip">Mails</span><span class="of-chip">Messages</span><span class="of-chip">Documents</span></div>
-        </article>
-        <article class="of-case">
-          <span class="of-case__tag">CRM GÉNÉRIQUE</span>
-          <h3>Vous centralisez une partie de l’activité.</h3>
-          <p>Le CRM apporte une structure utile, mais certaines spécificités de votre métier ou de votre organisation restent en dehors de l’outil.</p>
-        </article>
-        <article class="of-case">
-          <span class="of-case__tag">CRM MÉTIER / TRÈS COMPLET</span>
-          <h3>Beaucoup de possibilités, parfois trop de contraintes.</h3>
-          <p>L’outil peut être puissant, mais son fonctionnement est déjà défini. Vous devez parfois adapter vos habitudes au logiciel plutôt que l’inverse.</p>
-        </article>
+        <article class="of-case"><span class="of-case__tag">SANS CRM</span><h3>Tout fonctionne… mais partout.</h3><p>Les informations vivent entre plusieurs outils. Les relances, rappels et envois reposent encore beaucoup sur votre mémoire et vos habitudes.</p><div class="of-case__flow"><span class="of-chip">Tableur</span><span class="of-chip">Agenda</span><span class="of-chip">Mails</span><span class="of-chip">Messages</span><span class="of-chip">Documents</span></div></article>
+        <article class="of-case"><span class="of-case__tag">CRM GÉNÉRIQUE</span><h3>Vous centralisez une partie de l’activité.</h3><p>Le CRM apporte une structure utile, mais certaines spécificités de votre métier ou de votre organisation restent en dehors de l’outil.</p></article>
+        <article class="of-case"><span class="of-case__tag">CRM MÉTIER / TRÈS COMPLET</span><h3>Beaucoup de possibilités, parfois trop de contraintes.</h3><p>L’outil peut être puissant, mais son fonctionnement est déjà défini. Vous devez parfois adapter vos habitudes au logiciel plutôt que l’inverse.</p></article>
       </div>
-
-      <div class="of-bridge">
-        <strong>Centraliser n’est qu’une partie du problème.</strong>
-        <p>Un CRM peut stocker et organiser vos informations sans automatiser votre façon de travailler. OrFab pense aussi les relances, rappels, documents, changements d’étape et actions qui peuvent être déclenchés au bon moment.</p>
-      </div>
+      <div class="of-bridge"><strong>Centraliser n’est qu’une partie du problème.</strong><p>Un CRM peut stocker et organiser vos informations sans automatiser votre façon de travailler. OrFab pense aussi les relances, rappels, documents, changements d’étape et actions qui peuvent être déclenchés au bon moment.</p></div>
     </div>
   </section>
 
   <section class="of-section of-method" id="methode">
     <div class="of-shell">
-      <p class="of-kicker">NOTRE MÉTHODE</p>
-      <h2>Comprendre d’abord. Construire ensuite.</h2>
-      <p class="of-section__intro">Votre organisation n’est pas un problème à corriger. C’est le point de départ de la conception.</p>
-
+      <p class="of-kicker">NOTRE MÉTHODE</p><h2>Comprendre d’abord. Construire ensuite.</h2><p class="of-section__intro">Votre organisation n’est pas un problème à corriger. C’est le point de départ de la conception.</p>
       <div class="of-path">
         <article class="of-step"><div class="of-step__dot">01</div><h3>Découvrir votre activité</h3><p>Nous échangeons sur votre métier, votre organisation, vos outils et votre façon de travailler.</p></article>
         <article class="of-step"><div class="of-step__dot">02</div><h3>Comprendre votre fonctionnement</h3><p>OrFab analyse votre parcours actuel pour identifier ce qui compte vraiment dans votre quotidien et ce que votre futur outil doit respecter.</p></article>
@@ -86,66 +73,14 @@
   </section>
 
   <section class="of-section of-converge" id="solution">
-    <div class="of-shell">
-      <p class="of-kicker">UNE SOLUTION AUTOUR DE VOTRE QUOTIDIEN</p>
-      <h2>Vos outils, vos contraintes, vos habitudes. Réunis autour d’un même fonctionnement.</h2>
-      <p class="of-section__intro">OrFab ne décide pas à quoi votre outil doit ressembler avant de comprendre comment vous travaillez.</p>
-
-      <div class="of-converge__grid">
-        <div class="of-tools" aria-label="Outils et contraintes du quotidien">
-          <div class="of-tool">Tableur<small>suivi, listes, données</small></div>
-          <div class="of-tool">Calendrier<small>rendez-vous, échéances</small></div>
-          <div class="of-tool">E-mails<small>échanges, confirmations</small></div>
-          <div class="of-tool">Réseaux sociaux<small>prospects, messages</small></div>
-          <div class="of-tool">Messagerie<small>WhatsApp, SMS…</small></div>
-          <div class="of-tool">Documents<small>devis, contrats, pièces</small></div>
-          <div class="of-tool">Relances<small>clients, prospects</small></div>
-          <div class="of-tool">Rappels<small>actions à ne pas oublier</small></div>
-          <div class="of-tool">Envois<small>documents, notifications</small></div>
-        </div>
-        <div class="of-center"><div class="of-orb"><strong>OrFab</strong></div></div>
-        <div class="of-result"><span>Le résultat</span><strong>Votre logiciel sur mesure.</strong><p>Un outil pensé autour de votre métier, de votre vocabulaire et du fonctionnement que nous avons défini ensemble.</p></div>
-      </div>
+    <div class="of-shell"><p class="of-kicker">UNE SOLUTION AUTOUR DE VOTRE QUOTIDIEN</p><h2>Vos outils, vos contraintes, vos habitudes. Réunis autour d’un même fonctionnement.</h2><p class="of-section__intro">OrFab ne décide pas à quoi votre outil doit ressembler avant de comprendre comment vous travaillez.</p>
+      <div class="of-converge__grid"><div class="of-tools" aria-label="Outils et contraintes du quotidien"><div class="of-tool">Tableur<small>suivi, listes, données</small></div><div class="of-tool">Calendrier<small>rendez-vous, échéances</small></div><div class="of-tool">E-mails<small>échanges, confirmations</small></div><div class="of-tool">Réseaux sociaux<small>prospects, messages</small></div><div class="of-tool">Messagerie<small>WhatsApp, SMS…</small></div><div class="of-tool">Documents<small>devis, contrats, pièces</small></div><div class="of-tool">Relances<small>clients, prospects</small></div><div class="of-tool">Rappels<small>actions à ne pas oublier</small></div><div class="of-tool">Envois<small>documents, notifications</small></div></div><div class="of-center"><div class="of-orb"><strong>OrFab</strong></div></div><div class="of-result"><span>Le résultat</span><strong>Votre logiciel sur mesure.</strong><p>Un outil pensé autour de votre métier, de votre vocabulaire et du fonctionnement que nous avons défini ensemble.</p></div></div>
       <p class="of-converge__line">Pas un logiciel à apprivoiser. Un outil conçu pour trouver sa place dans votre activité.</p>
     </div>
   </section>
 
-  <section class="of-section of-offers" id="tarifs">
-    <div class="of-shell">
-      <div class="of-offers__head">
-        <div><p class="of-kicker">NOS OFFRES</p><h2>Une solution conçue autour de votre activité.</h2></div>
-        <p>Chaque projet commence par une phase de découverte et de diagnostic. Le tarif final dépend du périmètre retenu, sans abonnement obligatoire.</p>
-      </div>
+  <section class="of-section of-offers" id="tarifs"><div class="of-shell"><div class="of-offers__head"><div><p class="of-kicker">NOS OFFRES</p><h2>Une solution conçue autour de votre activité.</h2></div><p>Chaque projet commence par une phase de découverte et de diagnostic. Le tarif final dépend du périmètre retenu, sans abonnement obligatoire.</p></div><div class="of-offers__grid"><article class="of-offer"><p class="of-offer__label">CRM SUR MESURE</p><h3>Votre activité.<br>Votre fonctionnement.<br><span>Votre outil.</span></h3><div class="of-price"><small>À partir de</small><strong>2 500 €</strong></div><p class="of-offer__desc">Un CRM conçu autour de votre manière de travailler, pour centraliser l’essentiel et automatiser ce qui peut l’être.</p><ul><li>Diagnostic de votre organisation</li><li>Conception et paramétrage personnalisés</li><li>Tests et 2 cycles d’ajustements</li><li>Livraison de votre CRM</li><li>Environ 1 h de formation en visio</li></ul><div class="of-support"><strong>Accompagnement facultatif — 30 € / mois</strong><p>Suivi annuel, petits ajustements, assistance et tarif préférentiel sur les évolutions.</p></div><a class="of-btn of-btn--ghost" href="mailto:contact@orfab.fr?subject=Demande%20de%20rappel%20-%20CRM%20sur%20mesure">Se faire rappeler <span>→</span></a></article><article class="of-offer of-offer--gold"><p class="of-offer__label">CRM + SITE WEB</p><h3>De votre visibilité<br>jusqu’au suivi<br><span>de vos clients.</span></h3><div class="of-price"><small>À partir de</small><strong>5 000 €</strong></div><p class="of-offer__desc">Un site et un CRM pensés ensemble pour créer un parcours cohérent, de l’arrivée du prospect jusqu’à son suivi.</p><ul><li>Tout le périmètre du CRM sur mesure</li><li>Conception de votre site vitrine</li><li>Parcours prospect relié au CRM</li><li>Identité et expérience cohérentes</li><li>Environ 1 h 30 de formation en visio</li></ul><div class="of-support"><strong>Accompagnement facultatif — 45 € / mois</strong><p>Suivi CRM + site, petits ajustements, assistance et tarif préférentiel sur les évolutions.</p></div><a class="of-btn of-btn--gold" href="mailto:contact@orfab.fr?subject=Demande%20de%20rappel%20-%20CRM%20et%20site">Se faire rappeler <span>→</span></a></article></div></div></section>
 
-      <div class="of-offers__grid">
-        <article class="of-offer">
-          <p class="of-offer__label">CRM SUR MESURE</p>
-          <h3>Votre activité.<br>Votre fonctionnement.<br><span>Votre outil.</span></h3>
-          <div class="of-price"><small>À partir de</small><strong>2 500 €</strong></div>
-          <p class="of-offer__desc">Un CRM conçu autour de votre manière de travailler, pour centraliser l’essentiel et automatiser ce qui peut l’être.</p>
-          <ul><li>Diagnostic de votre organisation</li><li>Conception et paramétrage personnalisés</li><li>Tests et 2 cycles d’ajustements</li><li>Livraison de votre CRM</li><li>Environ 1 h de formation en visio</li></ul>
-          <div class="of-support"><strong>Accompagnement facultatif — 30 € / mois</strong><p>Suivi annuel, petits ajustements, assistance et tarif préférentiel sur les évolutions.</p></div>
-          <a class="of-btn of-btn--ghost" href="mailto:contact@orfab.fr?subject=Demande%20de%20rappel%20-%20CRM%20sur%20mesure">Se faire rappeler <span>→</span></a>
-        </article>
-
-        <article class="of-offer of-offer--gold">
-          <p class="of-offer__label">CRM + SITE WEB</p>
-          <h3>De votre visibilité<br>jusqu’au suivi<br><span>de vos clients.</span></h3>
-          <div class="of-price"><small>À partir de</small><strong>5 000 €</strong></div>
-          <p class="of-offer__desc">Un site et un CRM pensés ensemble pour créer un parcours cohérent, de l’arrivée du prospect jusqu’à son suivi.</p>
-          <ul><li>Tout le périmètre du CRM sur mesure</li><li>Conception de votre site vitrine</li><li>Parcours prospect relié au CRM</li><li>Identité et expérience cohérentes</li><li>Environ 1 h 30 de formation en visio</li></ul>
-          <div class="of-support"><strong>Accompagnement facultatif — 45 € / mois</strong><p>Suivi CRM + site, petits ajustements, assistance et tarif préférentiel sur les évolutions.</p></div>
-          <a class="of-btn of-btn--gold" href="mailto:contact@orfab.fr?subject=Demande%20de%20rappel%20-%20CRM%20et%20site">Se faire rappeler <span>→</span></a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <footer class="of-footer" id="apropos">
-    <div class="of-shell of-footer__panel">
-      <div><p class="of-kicker">ORFAB</p><h2>Vous avez construit votre activité.<br>Nous construisons autour d’elle.</h2><p>Respecter votre métier, comprendre ce qui existe déjà et ne construire que ce qui vous est réellement utile.</p></div>
-      <a class="of-btn of-btn--gold" href="mailto:contact@orfab.fr?subject=Demande%20de%20rappel">Se faire rappeler <span>→</span></a>
-    </div>
-  </footer>
+  <footer class="of-footer" id="apropos"><div class="of-shell of-footer__panel"><div><p class="of-kicker">ORFAB</p><h2>Vous avez construit votre activité.<br>Nous construisons autour d’elle.</h2><p>Respecter votre métier, comprendre ce qui existe déjà et ne construire que ce qui vous est réellement utile.</p></div><a class="of-btn of-btn--gold" href="mailto:contact@orfab.fr?subject=Demande%20de%20rappel">Se faire rappeler <span>→</span></a></div></footer>
 </body>
 </html>
