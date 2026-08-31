@@ -20,3 +20,9 @@ body{margin:0;background:var(--blue);color:var(--cream);font-family:-apple-syste
 .of-hero__content h1::before{content:"Votre activité est unique.";color:var(--cream)}
 .of-hero__content h1::after{content:"Son fonctionnement aussi.";color:#e7b24a}
 @media(max-width:560px){.of-hero__content h1::before,.of-hero__content h1::after{font-size:44px;letter-spacing:-.02em}}
+
+/* Bandeau principal toujours visible */
+header.of-header{position:fixed!important;top:18px!important;left:0!important;right:auto!important;z-index:1000!important;margin-top:0!important;box-shadow:0 10px 30px rgba(0,0,0,.18),inset 0 0 0 .5px rgba(200,148,54,.35)!important}
+.of-hero__content{padding-top:146px!important}
+@media(max-width:900px){header.of-header{top:12px!important}.of-hero__content{padding-top:132px!important}}
+@media(max-width:560px){header.of-header{top:12px!important}.of-hero__content{padding-top:126px!important}}
