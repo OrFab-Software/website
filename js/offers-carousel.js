@@ -9,9 +9,23 @@
   const grid = section.querySelector('.of-offers__grid');
   if (!cards.length || !prev || !next || !grid) return;
 
+  const forceDesktopThreeColumns = () => {
+    if (window.matchMedia('(min-width: 901px)').matches) {
+      grid.style.setProperty('display', 'grid', 'important');
+      grid.style.setProperty('grid-template-columns', 'repeat(3, minmax(0, 1fr))', 'important');
+      grid.style.setProperty('gap', '20px', 'important');
+    } else {
+      grid.style.removeProperty('display');
+      grid.style.removeProperty('grid-template-columns');
+      grid.style.removeProperty('gap');
+    }
+  };
+
   let activeIndex = 1;
 
   const render = () => {
+    forceDesktopThreeColumns();
+
     cards.forEach((card, index) => {
       const active = index === activeIndex;
       card.classList.toggle('is-active', active);
