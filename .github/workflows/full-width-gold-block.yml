@@ -1,0 +1,20 @@
+name: Full width gold block
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/full-width-gold-block.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/full_width_gold_block.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git diff --cached --quiet || git commit -m "Etend le bloc or sur toute la largeur"
+          git push
