@@ -1,0 +1,19 @@
+name: Optimization levels horizontal
+on:
+  push:
+    branches: [ main ]
+    paths: ['.github/workflows/optimization-levels-horizontal.yml']
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/optimization_levels_horizontal.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git diff --cached --quiet || git commit -m "Dispose les priorités d optimisation horizontalement"
+          git push
