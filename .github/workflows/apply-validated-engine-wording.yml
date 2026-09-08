@@ -1,0 +1,36 @@
+name: Apply validated engine wording
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/apply_validated_engine_wording.py'
+      - '.github/workflows/apply-validated-engine-wording.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Apply validated wording
+        run: python scripts/apply_validated_engine_wording.py
+      - name: Commit simulation update
+        run: |
+          if git diff --quiet -- simulation.html; then
+            echo 'No simulation change needed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add simulation.html
+          git commit -m 'Harmonise les retours du moteur de simulation'
+          git push
