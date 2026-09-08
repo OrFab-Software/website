@@ -1,0 +1,47 @@
+name: Patch simulation results
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch simulation.html
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('simulation.html')
+          s = p.read_text(encoding='utf-8')
+
+          s = s.replace(".result-list{display:grid;gap:10px;margin-top:14px}.result-item{background:rgba(242,238,229,.55);border:1px solid rgba(16,36,58,.13);border-radius:15px;padding:14px 16px;line-height:1.5}.offer-box{margin-top:30px;background:var(--blue);color:var(--cream);border-radius:20px;padding:24px}.offer-box .offer-label{color:var(--gold2);font-size:12px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase}.offer-box h3{color:var(--gold2);font-size:30px;margin:7px 0 9px}.offer-box p{line-height:1.55;margin:0}.offer-note{margin-top:12px!important;color:#bdc7cc;font-size:13px}.result-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.result-actions .secondary{background:transparent;border:1px solid var(--blue);color:var(--blue)}",
+          ".result-list{display:block;margin-top:8px}.result-item{line-height:1.65;margin:0 0 8px}.offer-box{margin-top:28px;padding-top:24px;border-top:1px solid rgba(16,36,58,.2)}.offer-box h3{font-size:25px;margin:0 0 8px}.offer-name{color:#9b6c18;font-family:\"Iowan Old Style\",\"Palatino Linotype\",Palatino,Georgia,serif;font-size:30px;line-height:1.1;margin:0 0 10px!important}.offer-box p{line-height:1.6;margin:0}.offer-note{margin-top:12px!important;color:#29445c;font-size:13px}.result-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.result-actions .secondary{background:transparent;border:1px solid var(--blue);color:var(--blue)}.result-actions a{display:inline-flex;align-items:center;text-decoration:none}.result-actions .booking{background:linear-gradient(180deg,#f3ce77,#d59c35);color:#090a0c}.result-actions .booking[aria-disabled=\"true\"]{opacity:.55;cursor:not-allowed}")
+
+          s = s.replace("<div id=\"opportunitiesSection\" class=\"result-section\"><h3>Ce qu’on pourrait simplifier</h3><div class=\"result-list\" id=\"opportunities\"></div></div><div class=\"offer-box\"><div class=\"offer-label\">Périmètre estimé</div><h3 id=\"offerName\"></h3><p id=\"offerText\"></p><p class=\"offer-note\" id=\"offerNote\"></p></div><div class=\"result-actions\"><button class=\"btn\" id=\"restart\">Refaire la simulation</button><a class=\"btn secondary\" href=\"index.html#tarifs\" style=\"display:inline-flex;align-items:center;text-decoration:none\">Voir les offres</a></div>",
+          "<div id=\"opportunitiesSection\" class=\"result-section\"><h3>Ce qu’on pourrait mettre en place</h3><div class=\"result-list\" id=\"opportunities\"></div></div><div class=\"offer-box\"><h3>Le périmètre qui semble vous correspondre</h3><p class=\"offer-name\" id=\"offerName\"></p><p id=\"offerText\"></p><p class=\"offer-note\" id=\"offerNote\"></p></div><div class=\"result-actions\"><a class=\"btn booking\" id=\"bookingLink\" href=\"#\" aria-disabled=\"true\" title=\"Lien de réservation Google Calendar à configurer\">Réserver un échange visio</a><a class=\"btn secondary\" href=\"index.html#tarifs\">Voir les offres</a><button class=\"btn\" id=\"restart\">Refaire la simulation</button></div>")
+
+          s = s.replace("if(journeyCount>=2&&strong>=1){profile='Plusieurs parcours à orchestrer';profileText='Votre activité ne suit pas un seul chemin : le CRM devra s’adapter à plusieurs parcours et à leurs règles.'}",
+          "if(journeyCount>=2&&strong>=1){profile='Plusieurs parcours à orchestrer';profileText=`Votre activité repose sur ${journeyCount} parcours clients distincts. Le CRM devra donc adapter ses étapes et ses règles selon la prestation concernée.`}")
+
+          s = s.replace("if(!strengths.length)strengths.push('Votre parcours est suffisamment défini pour identifier clairement les étapes à conserver et celles à simplifier.');",
+          "")
+
+          old = "const fill=(id,items)=>{$(id).innerHTML=items.map(x=>`<div class=\"result-item\">${x}</div>`).join('')};fill('strengths',r.strengths);fill('diagnostics',r.diagnostics.length?r.diagnostics:['Aucune friction majeure ne ressort de vos réponses.']);fill('opportunities',r.opportunities.length?r.opportunities:['Conserver votre fonctionnement actuel et n’ajouter que les éléments réellement utiles.']);$('offerName').textContent=r.offer;$('offerText').textContent=r.borderline?`Votre besoin se situe probablement autour de ${r.offer}. Certains éléments pourraient toutefois faire évoluer le périmètre vers ${r.borderline}.`:`Votre fonctionnement se rapproche ${r.confidence==='forte'?'clairement':'probablement'} du périmètre ${r.offer}.`;$('offerNote').textContent='Cette estimation reste indicative : un échange permet de confirmer les automatisations utiles, les outils à connecter et le périmètre exact avant tout devis.';"
+          new = "const fill=(id,items)=>{$(id).innerHTML=items.map(x=>`<p class=\"result-item\">${x}</p>`).join('')};$('strengthsSection').style.display=r.strengths.length?'block':'none';fill('strengths',r.strengths);fill('diagnostics',r.diagnostics.length?r.diagnostics:['Aucune friction majeure ne ressort de vos réponses.']);fill('opportunities',r.opportunities.length?r.opportunities:['Conserver votre fonctionnement actuel et n’ajouter que les éléments réellement utiles.']);$('offerName').textContent=r.offer;$('offerText').textContent=r.borderline?`Votre simulation correspond à un périmètre proche de ${r.offer}. Certains éléments pourraient toutefois faire évoluer le projet vers ${r.borderline}, selon la cartographie détaillée.`:`Votre simulation correspond à un périmètre proche de ${r.offer}. La formule retenue dépendra surtout de la structure réelle des parcours, des règles à orchestrer et des automatisations utiles.`;$('offerNote').textContent='Cette estimation reste indicative. Le prix final dépendra de la cartographie précise de votre fonctionnement, des automatisations réellement utiles et des outils à connecter.';"
+          s = s.replace(old, new)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git commit -m "Affine la page de résultats de simulation"
+          git push
