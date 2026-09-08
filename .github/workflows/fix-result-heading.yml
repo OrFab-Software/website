@@ -1,0 +1,36 @@
+name: Fix simulation result heading
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/fix-result-heading.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-heading:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Keep the result heading fixed
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('simulation.html')
+          s = p.read_text()
+          old = "$('resultProfileTitle').textContent=r.profile.endsWith('.')?r.profile:r.profile+'.';"
+          new = "$('resultProfileTitle').textContent='Analyse de votre simulation';"
+          if old not in s:
+              raise SystemExit('Dynamic result heading assignment not found')
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+          PY
+      - name: Commit change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git diff --cached --quiet || git commit -m "Fixe le titre Analyse de votre simulation"
+          git push
