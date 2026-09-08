@@ -1,0 +1,25 @@
+name: Patch result cards
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/patch-result-cards.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: python scripts/patch_result_cards.py
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git diff --cached --quiet || git commit -m "Affiche la synthèse détaillée des réponses par phase"
+          git push
