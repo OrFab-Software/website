@@ -1,0 +1,26 @@
+name: Increase phase summary font
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/increase_phase_summary_font.py
+      - .github/workflows/increase-phase-summary-font.yml
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python scripts/increase_phase_summary_font.py
+      - name: Commit result
+        run: |
+          if git diff --quiet -- simulation.html; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git commit -m "Augmente la taille des textes du récapitulatif"
+          git push
