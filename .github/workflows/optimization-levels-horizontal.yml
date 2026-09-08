@@ -15,5 +15,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add simulation.html
-          git diff --cached --quiet || git commit -m "Dispose les priorités d optimisation horizontalement"
+          git diff --cached --quiet || git commit -m "Force les priorités côte à côte"
           git push
