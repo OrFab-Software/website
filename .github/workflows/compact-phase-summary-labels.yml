@@ -1,0 +1,25 @@
+name: Compact phase summary labels
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/compact-phase-summary-labels.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply compact labels
+        run: python scripts/compact_phase_summary_labels.py
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git diff --cached --quiet || git commit -m "Raccourcit les libellés de la synthèse par phase"
+          git push
