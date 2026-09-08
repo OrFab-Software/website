@@ -1,0 +1,20 @@
+name: Analysis block content
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/analysis-block-content.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/analysis_block_content.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git diff --cached --quiet || git commit -m "Structure le bloc analyse en points forts faibles et optimisations"
+          git push
