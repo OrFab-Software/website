@@ -1,0 +1,54 @@
+from pathlib import Path
+
+path = Path('simulation.html')
+text = path.read_text(encoding='utf-8')
+
+replacements = {
+"Une information peut rester dans un message, un e-mail ou un autre canal et ne pas être reprise au même endroit, ce qui rend le suivi plus fragile.": "Aujourd’hui, une demande peut rester dans un e-mail, un message privé ou un autre canal sans être reprise dans votre suivi principal. Cela augmente le risque qu’une information soit oubliée ou qu’un prospect ne soit pas suivi au bon moment.",
+"Chaque report demande du temps et crée une possibilité d’écart entre la source d’origine et votre suivi.": "Aujourd’hui, chaque nouvelle demande doit être reportée manuellement dans votre suivi. Cela vous prend du temps et augmente le risque qu’une information soit mal recopiée, incomplète ou simplement non reportée.",
+"Avec peu de canaux à surveiller, le risque de dispersion des nouvelles demandes reste limité.": "Avec peu de canaux à surveiller, vos nouvelles demandes sont plus faciles à repérer et à suivre. Cela limite la dispersion des informations et réduit le risque qu’un prospect passe inaperçu.",
+"Quand plusieurs demandes avancent en parallèle, une relance manquée peut retarder une décision ou laisser une opportunité sans suite.": "Aujourd’hui, lorsque plusieurs demandes avancent en parallèle, certaines relances peuvent passer au second plan. Un prospect peut alors rester sans suivi plus longtemps que prévu, voire ne jamais être recontacté.",
+"Le système actuel ne protège pas suffisamment votre suivi lorsque la charge augmente ou que plusieurs dossiers avancent en même temps.": "Aujourd’hui, le suivi dépend beaucoup de votre capacité à vous souvenir de chaque prochaine action. Lorsque plusieurs demandes avancent en parallèle ou que votre activité s’intensifie, le risque qu’un prospect reste sans relance augmente.",
+"La mémoire fonctionne tant que le volume reste faible, mais elle devient moins fiable dès que plusieurs situations se chevauchent.": "Aujourd’hui, certaines prochaines actions doivent être retenues mentalement. Tant que le nombre de prospects reste faible, cela peut fonctionner, mais dès que plusieurs situations se chevauchent, le risque d’oubli ou de retard augmente.",
+"Plus il existe de conditions possibles, plus il est facile que deux dossiers similaires soient traités différemment ou qu’une action soit oubliée.": "Aujourd’hui, plusieurs situations peuvent faire passer un prospect au statut de client. Cela demande de bien identifier le bon déclencheur pour chaque dossier et augmente le risque que deux situations similaires ne soient pas traitées de la même manière.",
+"Ces actions doivent rester cohérentes entre elles ; lorsqu’elles sont réalisées séparément, un oubli ou un décalage peut apparaître.": "Aujourd’hui, plusieurs actions doivent être réalisées au même moment lorsqu’un prospect devient client. Plus elles sont nombreuses, plus il faut les coordonner correctement pour éviter qu’une étape soit réalisée trop tard ou simplement oubliée.",
+"Même avec des modèles, répéter les mêmes manipulations consomme du temps et peut créer des oublis lorsque plusieurs dossiers avancent en parallèle.": "Aujourd’hui, certains documents doivent encore être préparés ou envoyés manuellement. Ces manipulations répétées prennent du temps et, lorsque plusieurs dossiers avancent en parallèle, augmentent le risque qu’un document soit préparé trop tard ou oublié.",
+"Plus les actions répétitives sont nombreuses, plus une part du temps est consacrée à l’organisation plutôt qu’à la prestation elle-même.": "Aujourd’hui, une partie de votre organisation repose sur des actions qui se répètent d’un dossier à l’autre. Plus elles sont nombreuses, plus elles mobilisent du temps et de l’attention, avec un risque accru qu’une action soit réalisée en retard ou oubliée.",
+"La double saisie prend du temps et deux versions d’une même information peuvent finir par diverger.": "Aujourd’hui, une même information doit parfois être saisie plusieurs fois. Cela vous fait perdre du temps et augmente le risque que deux versions d’une même information ne soient plus identiques ou qu’une mise à jour ne soit faite qu’à un seul endroit.",
+"Elle augmente directement le temps administratif et le risque d’erreur ou d’information non mise à jour.": "Aujourd’hui, vous devez régulièrement saisir les mêmes informations à plusieurs endroits. Cela alourdit votre travail administratif et multiplie les risques d’erreur, d’oubli de mise à jour ou d’informations différentes selon l’outil consulté.",
+"Une échéance qui reste isolée dans un agenda ou dans la mémoire peut être manquée alors qu’elle conditionne la suite du parcours.": "Aujourd’hui, certaines actions doivent être réalisées avant une date précise ou dans un délai déterminé. Lorsqu’elles sont suivies séparément du reste du dossier, elles demandent une vigilance supplémentaire et augmentent le risque qu’une échéance soit repérée trop tard ou oubliée.",
+"Un document manquant ou envoyé trop tard peut bloquer l’étape suivante et nécessiter une vérification supplémentaire.": "Aujourd’hui, lorsqu’un document nécessaire n’est pas préparé ou envoyé au bon moment, cela peut retarder la suite du dossier et vous obliger à revenir dessus pour vérifier ce qui manque.",
+"Une action prévue plusieurs semaines ou mois plus tard est facile à perdre de vue sans mécanisme de rappel.": "Aujourd’hui, certaines relances doivent être prévues plusieurs semaines ou plusieurs mois après la fin d’une prestation. Plus l’échéance est éloignée, plus elle demande d’être anticipée pour éviter qu’un client à recontacter ne soit simplement oublié.",
+"Sans vue claire de l’historique, une opportunité de nouvelle prestation peut dépendre du hasard ou de la mémoire.": "Aujourd’hui, vous n’identifiez pas toujours facilement les anciens clients qu’il serait pertinent de recontacter. Certaines opportunités de nouvelle prestation peuvent ainsi être repérées tardivement ou passer inaperçues.",
+"Vous conservez une vision cohérente des nouveaux contacts sans dépendre d’une ressaisie systématique.": "Aujourd’hui, vos nouvelles demandes arrivent déjà dans un suivi commun sans nécessiter de report systématique. Cela réduit la dispersion des informations et facilite le suivi des nouveaux contacts.",
+"Vous disposez d’un point de référence commun, ce qui limite la dispersion de l’information.": "Aujourd’hui, vos nouvelles demandes sont déjà rassemblées dans un même espace de suivi. Cela limite la dispersion des informations et vous permet de retrouver plus facilement l’état de chaque contact.",
+"Vous savez retrouver les personnes à recontacter et le suivi ne semble pas dépendre d’oublis fréquents.": "Aujourd’hui, vous parvenez à identifier les prospects à recontacter et à effectuer vos relances sans oubli fréquent. Votre suivi reste donc régulier et les demandes ont moins de risque de rester sans suite.",
+"Une règle de passage identifiable facilite le suivi et évite les ambiguïtés sur l’état d’un dossier.": "Aujourd’hui, vous savez précisément à quel moment un prospect devient client. Cela limite les hésitations dans le suivi et permet de traiter les dossiers de manière plus cohérente.",
+"Peu d’actions doivent être coordonnées au même moment, ce qui limite la charge organisationnelle.": "Aujourd’hui, peu d’actions doivent être réalisées au moment où un prospect devient client. Cela limite la coordination nécessaire et réduit le risque qu’une étape soit oubliée ou réalisée au mauvais moment.",
+"Vous avez déjà réduit des manipulations répétitives sur une étape qui revient souvent.": "Aujourd’hui, certaines tâches répétitives liées aux documents ne nécessitent déjà plus d’intervention manuelle systématique. Cela vous fait gagner du temps et réduit le risque d’oubli sur ces étapes.",
+"Une structure commune simplifie le suivi et permet d’améliorer le fonctionnement sans multiplier les règles particulières.": "Aujourd’hui, vos clients suivent globalement le même enchaînement d’étapes. Cela simplifie le suivi des dossiers et limite le nombre de situations particulières à gérer.",
+"Une information n’a pas besoin d’être reproduite dans plusieurs endroits, ce qui limite les erreurs et les pertes de temps.": "Aujourd’hui, une même information n’a généralement pas besoin d’être saisie plusieurs fois. Cela réduit le temps administratif et limite le risque d’avoir des informations différentes selon l’outil ou l’étape consultée.",
+"Des étapes ordonnées rendent le fonctionnement prévisible et facilitent la sécurisation de ce qui doit arriver ensuite.": "Aujourd’hui, les différentes étapes de vos prestations s’enchaînent de manière relativement claire. Cela facilite le suivi de l’avancement et permet de savoir plus facilement ce qui doit être fait ensuite.",
+"Les documents nécessaires semblent être préparés et envoyés sans créer de friction majeure.": "Aujourd’hui, les documents nécessaires sont généralement préparés et envoyés au bon moment. Cela évite que la suite d’un dossier soit retardée par un document manquant ou oublié.",
+"Il n’est pas utile d’ajouter des mécanismes de fidélisation si votre activité n’en a pas réellement besoin.": "Aujourd’hui, vous n’avez pas besoin de multiplier les actions après la fin d’une prestation. Cela évite d’alourdir inutilement votre organisation avec des suivis qui n’apporteraient pas de réelle valeur à votre activité.",
+"Cette action ne dépend plus de votre mémoire et peut être réalisée de manière régulière.": "Aujourd’hui, la demande d’avis ne dépend plus d’une action manuelle à chaque fin de prestation. Cela rend cette démarche plus régulière et réduit le risque qu’elle soit oubliée.",
+"Le suivi dans le temps reste actif sans nécessiter une nouvelle décision à chaque client.": "Aujourd’hui, les clients qui doivent être recontactés le sont selon une planification déjà définie. Cela réduit le risque qu’une relance prévue plusieurs semaines ou plusieurs mois après une prestation soit oubliée.",
+"Le suivi documentaire peut encore générer des oublis.": "Certains documents peuvent être oubliés ou envoyés trop tard.",
+"Planifier uniquement les suivis post-prestation qui ont une vraie valeur pour votre activité.": "Planifier les suivis après prestation qui ont une réelle utilité pour votre activité."
+}
+
+# The multi-journey wording was validated earlier and is intentionally preserved.
+missing = []
+changed = 0
+for old, new in replacements.items():
+    if old in text:
+        text = text.replace(old, new)
+        changed += 1
+    elif new not in text:
+        missing.append(old)
+
+if missing:
+    raise SystemExit('Missing expected engine strings:\n- ' + '\n- '.join(missing))
+
+path.write_text(text, encoding='utf-8')
+print(f'Validated engine wording applied: {changed} replacements; {len(replacements)-changed} already current.')
