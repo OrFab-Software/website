@@ -1,0 +1,31 @@
+name: Update simulation result title
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  update-title:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update result wording
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('simulation.html')
+          s = p.read_text()
+          s = s.replace('<p class="kicker">VOTRE SIMULATION</p><h2 id="resultProfileTitle">Votre fonctionnement a été analysé.</h2>', '<p class="kicker">LE RÉSULTAT</p><h2 id="resultProfileTitle">Analyse de votre simulation</h2>')
+          p.write_text(s)
+          PY
+      - name: Commit change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git diff --cached --quiet || git commit -m "Renomme le titre des résultats de simulation"
+          git push
