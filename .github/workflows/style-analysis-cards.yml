@@ -1,0 +1,33 @@
+name: Style analysis cards
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/style_analysis_cards.py'
+      - '.github/workflows/style-analysis-cards.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply card styling and titles
+        run: python3 scripts/style_analysis_cards.py
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- simulation.html; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          git commit -m "Met en valeur les cartes de l analyse"
+          git push
