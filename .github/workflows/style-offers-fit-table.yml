@@ -1,0 +1,25 @@
+name: Style offers fit table
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/style_offers_fit_table.py'
+      - '.github/workflows/style-offers-fit-table.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python scripts/style_offers_fit_table.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simulation.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Passe le tableau des offres en bleu et or"
+          git push
