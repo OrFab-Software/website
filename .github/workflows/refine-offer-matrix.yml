@@ -17,3 +17,4 @@ jobs:
           git add simulation.html
           git diff --cached --quiet || git commit -m "Affine la couverture réelle des offres"
           git push
+# relance après correction du script
