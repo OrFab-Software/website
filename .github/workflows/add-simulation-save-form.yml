@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - scripts/add_simulation_save_form.py
+      - scripts/fix_simulation_submission_id.py
       - .github/workflows/add-simulation-save-form.yml
 permissions:
   contents: write
@@ -16,11 +17,12 @@ jobs:
         with:
           python-version: '3.x'
       - run: python scripts/add_simulation_save_form.py
+      - run: python scripts/fix_simulation_submission_id.py
       - name: Commit result
         run: |
           if git diff --quiet -- simulation.html; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add simulation.html
-          git commit -m "Ajoute la sauvegarde de simulation et la collecte prospect"
+          git commit -m "Corrige l’identifiant unique des simulations"
           git push
