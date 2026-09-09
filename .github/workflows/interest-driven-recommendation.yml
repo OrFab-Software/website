@@ -22,5 +22,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add simulation.html
-          git commit -m "Affiche la recommandation selon les intérêts sélectionnés"
+          git commit -m "Clarifie l’estimation sur mesure selon les intérêts"
           git push
