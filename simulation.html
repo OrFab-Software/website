@@ -122,7 +122,7 @@
 <section class="simulation-save-card" id="simulationSaveCard" hidden>
   <div class="simulation-save-kicker">Sauvegarder votre simulation</div>
   <h2>Gardez une trace de votre diagnostic.</h2>
-  <p class="simulation-save-lead">Renseignez simplement votre prénom, votre nom et votre adresse e-mail. Votre simulation complète sera enregistrée et rattachée à votre fiche prospect OrFab.</p>
+  <p class="simulation-save-lead">Renseignez simplement votre prénom, votre nom et votre adresse e-mail pour conserver votre simulation et permettre à OrFab de la retrouver lors de votre échange.</p>
   <form id="simulationSaveForm" novalidate>
     <div class="simulation-save-grid">
       <label class="simulation-save-field">Prénom<input id="simulationFirstName" name="firstName" type="text" autocomplete="given-name" maxlength="80" required></label>
@@ -438,7 +438,7 @@ $('diagnosticToggle').onclick=()=>{const panel=$('diagnosticDetail');const open=
       const data=await response.json().catch(()=>({}));
       if(!response.ok||!data.ok)throw new Error(data.error||'Enregistrement impossible pour le moment.');
 
-      setStatus('Simulation enregistrée. Elle est maintenant rattachée à votre fiche prospect OrFab.','success');
+      setStatus('Simulation enregistrée. Vous pourrez la retrouver lors de votre échange avec OrFab.','success');
       submit.textContent='Simulation enregistrée ✓';
       firstName.readOnly=true;lastName.readOnly=true;email.readOnly=true;
       try{localStorage.setItem('orfab-last-saved-simulation',data.simulationId||submissionId)}catch(e){}
