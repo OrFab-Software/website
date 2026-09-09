@@ -442,6 +442,7 @@ $('diagnosticToggle').onclick=()=>{const panel=$('diagnosticDetail');const open=
       submit.textContent='Simulation enregistrée ✓';
       firstName.readOnly=true;lastName.readOnly=true;email.readOnly=true;
       try{localStorage.setItem('orfab-last-saved-simulation',data.simulationId||submissionId)}catch(e){}
+      try{sessionStorage.removeItem('orfab-simulation-submission-id')}catch(e){}
     }catch(error){
       submit.disabled=false;
       submit.textContent='Enregistrer ma simulation';
