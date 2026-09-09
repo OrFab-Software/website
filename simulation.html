@@ -46,6 +46,10 @@
 .summary-heading-with-icon{display:flex!important;align-items:center;gap:12px}
 .phase-summary-head.summary-head-with-icon{align-items:flex-start}
 
+
+/* Personalized recommendation table */
+.offers-fit-choice{justify-content:center}.interest-toggle{border:1.5px solid var(--blue);background:transparent;color:var(--blue);border-radius:999px;padding:8px 12px;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap}.interest-toggle:hover,.interest-toggle[aria-pressed="true"]{background:var(--blue);color:var(--cream)}.offers-fit-estimate{margin-top:20px;padding:22px 24px;border:3px solid var(--blue);border-radius:18px;background:linear-gradient(180deg,#f3ce77,var(--gold));display:flex;justify-content:space-between;gap:24px;align-items:center}.offers-fit-estimate-copy strong{display:block;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:25px;color:var(--blue);margin-bottom:5px}.offers-fit-estimate-copy p{margin:0;color:#29445c;line-height:1.5}.offers-fit-estimate-price{font-size:28px;font-weight:950;color:var(--blue);white-space:nowrap}.offers-fit-row{grid-template-columns:minmax(320px,1.8fr) minmax(120px,.55fr) minmax(150px,.7fr)!important}.offers-fit-head:first-child{justify-content:flex-start!important}@media(max-width:800px){.offers-fit-row{grid-template-columns:minmax(210px,1.5fr) minmax(100px,.6fr) minmax(135px,.75fr)!important}.offers-fit-estimate{align-items:flex-start;flex-direction:column}.offers-fit-estimate-price{font-size:24px}}
+
 </style><style id="optimization-horizontal-override">
 @media (min-width:701px){
   .optimization-levels{
@@ -273,6 +277,19 @@ $('diagnosticToggle').onclick=()=>{const panel=$('diagnosticDetail');const open=
   apply();
   const target=document.getElementById('phaseSummary');
   if(target) new MutationObserver(apply).observe(target,{childList:true,subtree:true});
+})();
+</script>
+
+
+<script id="orfab-personalized-recommendation-table">
+(function(){
+ const norm=t=>(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+ function floorFor(x){const t=norm((x.text||'')+' '+(x.why||''));if(/plusieurs workflow|differents rythmes|reactiv|fidelis|segment|plusieurs conditions|type de client|orchestr|automatisation avancee|parcours complexes/.test(t))return 2;if(/plusieurs parcours|\d+ parcours|ressaisi|etapes reellement differentes|coordonner les actions|plusieurs canaux|synchronis|adapter les relances|automatiser plusieurs etapes|double saisie|personnalis.*document|document.*automati/.test(t))return 1;return 0}
+ function level(x){const p=x.priority||0;return p>=85?'Critique':p>=70?'Structurante':'Avancée'}
+ function render(r){const section=document.getElementById('offersFitSection'),table=document.getElementById('offersFitTable'),plans=document.getElementById('offersFitPlans');if(!section||!table)return;const l=r.optimizationLevels||{},items=[...(l.critical||[]),...(l.structuring||[]),...(l.advanced||[])];if(!items.length)return;const floors=items.map(floorFor),max=Math.max(...floors);const offer=max===0?'ESSENTIEL':max===1?'ESSENTIEL+':'SIGNATURE',price=max===0?'autour de 2 500 €':max===1?'autour de 4 000 €':'autour de 9 000 €';table.innerHTML='<div class="offers-fit-row"><div class="offers-fit-cell offers-fit-head">Optimisations identifiées chez vous</div><div class="offers-fit-cell offers-fit-head">Priorité</div><div class="offers-fit-cell offers-fit-head">Votre intérêt</div></div>'+items.map((x,i)=>`<div class="offers-fit-row"><div class="offers-fit-cell"><div class="offers-fit-opt"><strong>${x.text||''}</strong><small>${x.why||''}</small></div></div><div class="offers-fit-cell offers-fit-mark"><span>${level(x)}</span></div><div class="offers-fit-cell offers-fit-choice"><button type="button" class="interest-toggle" aria-pressed="false" data-interest="${i}">♡ Ça m'intéresse</button></div></div>`).join('');
+ if(plans)plans.innerHTML=`<div class="offers-fit-estimate"><div class="offers-fit-estimate-copy"><strong>Votre projet se situe probablement dans l’offre ${offer}</strong><p>Cet ordre de grandeur vient des besoins identifiés dans votre fonctionnement. Vos sélections servent à préparer l’échange avec OrFab : elles ne construisent pas un devis à la carte.</p></div><div class="offers-fit-estimate-price">${price}</div></div>`;
+ table.querySelectorAll('.interest-toggle').forEach(b=>b.addEventListener('click',()=>{const on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',String(!on));b.textContent=!on?'♥ À discuter':'♡ Ça m’intéresse'}));section.hidden=false}
+ const old=window.renderOffersFit;window.renderOffersFit=function(r){if(old)old(r);render(r)};
 })();
 </script>
 
