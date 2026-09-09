@@ -21,7 +21,7 @@ html = r'''
 <section class="simulation-save-card" id="simulationSaveCard" hidden>
   <div class="simulation-save-kicker">Sauvegarder votre simulation</div>
   <h2>Gardez une trace de votre diagnostic.</h2>
-  <p class="simulation-save-lead">Renseignez simplement votre prénom, votre nom et votre adresse e-mail. Votre simulation complète sera enregistrée et rattachée à votre fiche prospect OrFab.</p>
+  <p class="simulation-save-lead">Renseignez simplement votre prénom, votre nom et votre adresse e-mail pour conserver votre simulation et permettre à OrFab de la retrouver lors de votre échange.</p>
   <form id="simulationSaveForm" novalidate>
     <div class="simulation-save-grid">
       <label class="simulation-save-field">Prénom<input id="simulationFirstName" name="firstName" type="text" autocomplete="given-name" maxlength="80" required></label>
@@ -134,7 +134,7 @@ script = r'''
       const data=await response.json().catch(()=>({}));
       if(!response.ok||!data.ok)throw new Error(data.error||'Enregistrement impossible pour le moment.');
 
-      setStatus('Simulation enregistrée. Elle est maintenant rattachée à votre fiche prospect OrFab.','success');
+      setStatus('Simulation enregistrée. Vous pourrez la retrouver lors de votre échange avec OrFab.','success');
       submit.textContent='Simulation enregistrée ✓';
       firstName.readOnly=true;lastName.readOnly=true;email.readOnly=true;
       try{localStorage.setItem('orfab-last-saved-simulation',data.simulationId||submissionId)}catch(e){}
@@ -157,5 +157,15 @@ if 'id="orfab-simulation-save-script"' not in s:
     if '</body>' not in s:
         raise SystemExit('body end not found')
     s=s.replace('</body>',script+'\n</body>',1)
+
+# Met à jour également les simulations déjà générées par une version antérieure du script.
+s = s.replace(
+    'Renseignez simplement votre prénom, votre nom et votre adresse e-mail. Votre simulation complète sera enregistrée et rattachée à votre fiche prospect OrFab.',
+    'Renseignez simplement votre prénom, votre nom et votre adresse e-mail pour conserver votre simulation et permettre à OrFab de la retrouver lors de votre échange.'
+)
+s = s.replace(
+    'Simulation enregistrée. Elle est maintenant rattachée à votre fiche prospect OrFab.',
+    'Simulation enregistrée. Vous pourrez la retrouver lors de votre échange avec OrFab.'
+)
 
 p.write_text(s,encoding='utf-8')
