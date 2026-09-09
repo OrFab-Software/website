@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "orfab-simulation-leads",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-09",
+  "vars": {
+    "ALLOWED_ORIGINS": "https://orfab-software.github.io"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "orfab-simulation-leads",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ]
+}
