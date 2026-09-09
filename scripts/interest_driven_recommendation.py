@@ -33,6 +33,6 @@ new_js=r'''<script id="orfab-recommendation-card-script">
 })();
 </script>'''
 pat=r'<script id="orfab-recommendation-card-script">.*?</script>'
-s2,n=re.subn(pat,new_js,s,count=1,flags=re.S)
+s2,n=re.subn(pat,lambda m:new_js,s,count=1,flags=re.S)
 if n!=1: raise SystemExit('recommendation script not found')
 p.write_text(s2,encoding='utf-8')
